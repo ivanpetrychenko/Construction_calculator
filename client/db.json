@@ -1,0 +1,198 @@
+{
+    "squares": [
+        {
+            "name": "Вітальня",
+            "value": 0,
+            "id": "living_room"
+        },
+        {
+            "name": "Коридор №2",
+            "value": 0,
+            "id": "corridor_2"
+        },
+        {
+            "name": "Вітальня з кухнею (студія)",
+            "value": 0,
+            "id": "living_kitchen"
+        },
+        {
+            "name": "Кухня",
+            "value": 0,
+            "id": "kitchen"
+        },
+        {
+            "name": "Спальня №1",
+            "value": 0,
+            "id": "bedroom_1"
+        },
+        {
+            "name": "Комора",
+            "value": 0,
+            "id": "pantry"
+        },
+        {
+            "name": "Спальня №2",
+            "value": 0,
+            "id": "bedroom_2"
+        },
+        {
+            "name": "Балкон №1",
+            "value": 0,
+            "id": "balcony_1"
+        },
+        {
+            "name": "Дитяча №1",
+            "value": 0,
+            "id": "childrens_1"
+        },
+        {
+            "name": "Балкон №2",
+            "value": 0,
+            "id": "balcony_2"
+        },
+        {
+            "name": "Дитяча №2",
+            "value": 0,
+            "id": "childrens_2"
+        },
+        {
+            "name": "Лоджія",
+            "value": 0,
+            "id": "loggia"
+        },
+        {
+            "name": "Кабінет",
+            "value": 0,
+            "id": "cabinet"
+        },
+        {
+            "name": "Санвузол (ванна або душ)",
+            "value": 0,
+            "id": "bathroom"
+        },
+        {
+            "name": "Коридор №1",
+            "value": 0,
+            "id": "corridor_1"
+        },
+        {
+            "name": "Санвузол (туалет)",
+            "value": 0,
+            "id": "toilet"
+        }
+    ],
+    "operations": [
+        {
+            "name": "Демонтаж, зачистка старої обробки",
+            "count": "20",
+            "unit": "грн/м2",
+            "id": "destruction"
+        },
+        {
+            "name": "Укоси віконні",
+            "count": "20",
+            "unit": "грн/м2",
+            "id": "windows"
+        },
+        {
+            "name": "Штукатурка стін",
+            "count": "20",
+            "unit": "грн/м2",
+            "id": "wall_plaster"
+        },
+        {
+            "name": "Стяжка підлоги",
+            "count": "20",
+            "unit": "грн/м2",
+            "id": "floor"
+        },
+        {
+            "name": "Шпаклівка стін",
+            "count": "20",
+            "unit": "грн/м2",
+            "id": "wall_putty"
+        },
+        {
+            "name": "Укладання ламінату",
+            "count": "20",
+            "unit": "грн/м2",
+            "id": "laminate"
+        },
+        {
+            "name": "Поклейка шпалер",
+            "count": "20",
+            "unit": "грн/м2",
+            "id": "wallpaper"
+        },
+        {
+            "name": "Установка плінтуса на підлогу",
+            "count": "20",
+            "unit": "грн/м2",
+            "id": "floor_border"
+        },
+        {
+            "name": "Фарбування стін",
+            "count": "20",
+            "unit": "грн/м2",
+            "id": "wall_painting"
+        },
+        {
+            "name": "Плитка санвузли",
+            "count": "20",
+            "unit": "грн/м2",
+            "id": "tile"
+        },
+        {
+            "name": "Натяжна / гіпсокартонна стеля",
+            "count": "20",
+            "unit": "грн/м2",
+            "id": "ceiling"
+        },
+        {
+            "name": "Розводка, установка сантехніки",
+            "count": "30000",
+            "unit": "грн",
+            "id": "plumbing"
+        },
+        {
+            "name": "Фарбування стелі",
+            "count": "20",
+            "unit": "грн/м2",
+            "id": "ceiling_painting"
+        },
+        {
+            "name": "Електрика: розетки, вимикач., світло",
+            "count": "40000",
+            "unit": "грн",
+            "id": "electrition"
+        },
+        {
+            "name": "Шпаклівка стелі",
+            "count": "20",
+            "unit": "грн/м2",
+            "id": "ceiling_putty"
+        },
+        {
+            "name": "Вставка міжкімнатних дверей",
+            "count": "10000",
+            "unit": "грн/шт/25м2",
+            "id": "doors_in"
+        },
+        {
+            "name": "Плінтус стельовий",
+            "count": "10",
+            "unit": "грн/м",
+            "id": "ceiling_border"
+        },
+        {
+            "name": "Вставка вхідних дверей",
+            "count": "10000",
+            "unit": "грн/шт",
+            "id": "doors_out"
+        }
+    ],
+    "admin": {
+        "login": "root",
+        "password": "password" 
+    }
+}

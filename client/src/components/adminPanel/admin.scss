@@ -1,0 +1,120 @@
+@import "../../styles/variables.scss";
+
+.admin-panel {
+    margin: 100px auto 0 auto;
+    padding: 50px;
+    width: 1240px;
+    min-height: 610px;
+    background: linear-gradient(180deg, rgba(75, 75, 77, 0.3) 0%, rgb(18, 18, 33) 100%);
+    box-shadow: 0px 0px 30px 5px rgba(0, 0, 0, 0.5);
+    &__grid {
+       margin-top: 50px;
+       display: grid;
+       grid-template-columns: repeat(2, 491px); 
+       justify-content: space-between;
+       row-gap: 15px;
+    }
+    &__item {
+        display: grid;
+        grid-template-columns: auto 66px 91px;
+        grid-auto-rows: 21px;
+        align-items: center;
+        &-title {
+            font-size: 16px;
+            line-height: 19px;
+            color: #FFFFFF;
+        }
+        &-unit {
+            font-weight: bold;
+            font-size: 14px;
+            line-height: 17px;
+            color: #FFFFFF;
+            margin-left: 5px;
+        }
+        input {
+            background-color: transparent;
+            box-shadow: none;
+            border: none;
+            border-bottom: 1px solid #fff;
+            text-align: center;
+            font-size: 18px;
+            line-height: 22px;
+            vertical-align: bottom;
+            color: #fff;
+            &:focus {
+                border: none;
+                border-bottom: 1px solid $main-color;
+                outline: none;
+            }
+        }
+    }
+    &__notes {
+        margin-top: 70px;
+        display: grid;
+        grid-template-columns: auto 185px;
+    }
+}
+
+@media (max-width: 1400px) {
+    .admin-panel {
+        width: 1100px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .admin-panel {
+        width: 100%;
+        &__grid {
+            grid-template-columns: 1fr;
+        }
+        &__item {
+            &-title {
+                font-size: 18px;
+            }
+        }
+    }
+}
+
+@media (max-width: 992px) {
+    .admin-panel {
+        margin: 50px auto 0 auto;
+        &__notes {
+            align-items: end;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .admin-panel {
+        padding: 50px 30px;
+        &__item {
+            &-title {
+                font-size: 16px;
+            }
+            &-unit {
+                text-align: center;
+            }
+        }
+        &__notes {
+            margin-top: 50px;
+            grid-template-columns: 1fr;
+            row-gap: 30px;
+        }
+    }
+}
+
+@media (max-width: 576px) {
+    .admin-panel {
+        &__item {
+            display: block;
+            text-align: center;
+            input {
+                margin-top: 15px;
+            }
+            &-unit {
+                display: block;
+                margin-top: 15px;   
+            }
+        }
+    }
+}

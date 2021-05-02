@@ -1,0 +1,131 @@
+@import "styles/font.scss";
+@import "styles/variables.scss";
+* {
+    font-family: "HelveticaNeueCyr", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ul,
+li,
+dl {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    display: inline-block;
+    &:hover {
+        text-decoration: none;
+        color: inherit;
+    }
+}
+
+p {
+    margin: 0;
+    padding: 0;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0; 
+}
+
+.app {
+    padding: 120px 100px;
+    background: url('bg.jpg') center (center / cover) no-repeat;
+    min-height: 100vh;
+    &__title {
+        position: relative;
+        font-weight: bold;
+        font-size: 48px;
+        line-height: 59px;
+        text-transform: uppercase;
+        color: #fff;
+        &::after {
+            content: '';
+            display: block;
+            position: absolute;
+            bottom: 7px;
+            width: 360px;
+            height: 2px;
+            background-color: $main-color;
+        }
+    }
+}
+
+@media (max-width: 1700px) {
+    .app {
+        padding: 100px 40px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .app {
+        &__title {
+            font-size: 40px;
+            &::after {
+                width: 260px;
+            }
+        }
+    }
+}
+@media (max-width: 992px) {
+    .app {
+        &__title {
+            font-size: 34px;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .app {
+        padding: 60px 40px;
+        &__title {
+            font-size: 24px;
+            &::after {
+                width: 180px;
+            }
+        }
+    }
+}
+
+@media (max-width: 576px) {
+    .app {
+        padding: 35px 15px;
+        &__title {
+            font-size: 18px;
+            &::after {
+                width: 140px;
+            }
+        }
+    }
+}
+
+@media (max-width: 425px) {
+    .app {
+        &__title {
+            line-height: 26px;
+            &::after {
+                display: none;
+            }
+        }
+    }
+}
+
+@import "styles/button.scss";
+@import "styles/titles.scss";

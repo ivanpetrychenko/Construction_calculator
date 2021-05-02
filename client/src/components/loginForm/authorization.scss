@@ -1,0 +1,71 @@
+@import "../../styles/variables.scss";
+
+.authorization {
+    margin-top: 120px;
+    &__form {
+        width: 450px;
+        height: 459px;
+        margin: 50px auto 0 auto;
+        padding: 60px;
+        background: linear-gradient(180deg, rgba(75, 75, 77, 0.3) 0%, rgb(18, 18, 33) 100%);
+        box-shadow: 0px 0px 30px 5px rgba(0, 0, 0, 0.5);
+        label {
+            display: block;
+            font-weight: bold;
+            font-size: 24px;
+            line-height: 29px;
+            text-align: center;
+            color: #FFFFFF;
+            margin-bottom: 30px;
+        }
+        input {
+            width: 325px;
+            height: 45px;
+            background: #FFFFFF;
+            border-radius: 4px;
+            font-size: 24px;
+            line-height: 29px;
+            color: #000000;
+            padding: 0 20px;
+            margin-bottom: 30px;
+        }
+    }
+    &__error-msg {
+        display: block;
+        font-size: 18px;
+        line-height: 21px;
+        color: $error;
+        text-align: center;
+        visibility: hidden;
+        &_visible {
+            visibility: visible;
+        }
+    }
+    &__error {
+        border: 1px solid $error;
+    }
+}
+
+@media (max-width: 576px) {
+    .authorization {
+        margin-top: 30px;
+        &__form {
+            width: auto;
+            padding: 50px 40px;
+            input {
+                display: block;
+                margin: 0 auto 30px auto;
+                width: 100%;
+            }
+        }
+    }
+}
+
+@media (max-width: 425px) {
+    .authorization {
+        margin-top: 30px;
+        &__form {
+            padding: 50px 20px;
+        }
+    }
+}
