@@ -17,12 +17,19 @@ export default function CalculatorSquareOptions({hidden}) {
             return dispatch(clearChanges())
     }, [dispatch, getSquareInputs]);
 
-    const handleHeightChange = (value) => {
+    const validateInput = (value, elem) => {
+        if (value < 0) elem.style.color = 'red';
+        if (value >= 0) elem.style.color = '';
+    }
+
+    const handleHeightChange = (value, elem) => {
+        validateInput(value, elem);
         const {newHeight, newTotalPriceHRN, newTotalPriceUSD} = calculateHeight(services, value, height, totalSquare, totalPriceHRN, usdRate);
         dispatch(heightChanged(newHeight, newTotalPriceHRN, newTotalPriceUSD));
     }
 
-    const handleSquareChange = (id, value) => {
+    const handleSquareChange = (id, value, elem) => {
+        validateInput(value, elem);
         const {newSquares, newTotalSquare, newTotalPriceHRN, newTotalPriceUSD} = calculateSquareItems(id, value, squares, services, height, usdRate);
         dispatch(squareItemsChanged(newSquares, newTotalSquare, newTotalPriceHRN, newTotalPriceUSD));
     }
@@ -32,7 +39,7 @@ export default function CalculatorSquareOptions({hidden}) {
             <div className="area-item area-item_first">
                 <div className="area-item__title">Висота стелі в квартирі:</div>
                 <input 
-                    onChange={event => handleHeightChange(+event.target.value)} 
+                    onChange={event => handleHeightChange(+event.target.value, event.target)} 
                     type="number" 
                     id="height" 
                     placeholder="0" 
@@ -47,7 +54,7 @@ export default function CalculatorSquareOptions({hidden}) {
                         <li key={item.id} className="area-item">
                             <div className="area-item__title">{item.name}</div>
                             <input 
-                                onChange={event => handleSquareChange(item.id, +event.target.value)}
+                                onChange={event => handleSquareChange(item.id, +event.target.value, event.target)}
                                 // eslint-disable-next-line
                                 onFocus={event => {if (event.target.value == 0) event.target.value = ''}}
                                 type="number" 
@@ -66,6 +73,7 @@ export default function CalculatorSquareOptions({hidden}) {
                     <li className="calculator__note">встановлюйте площу приміщень там, де є потреба у ремонті</li>
                     <li className="calculator__note">якщо є додаткові кімнати, наприклад, Спальня №3, то додайте їх площю до
                         існуючих в калькуляторі</li>
+                    <li className="calculator__note">заповнюйте висоту стелі. Деякі розрахунки обов'язково потребують цього параметра</li>
                 </ul>
             </div>
         </div> 

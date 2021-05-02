@@ -1,0 +1,4 @@
+{
+    "port": 5000,
+    "mongoUri": "mongodb+srv://Ivan_Petrychenko:Ivan_Petrychenko@main.b1npj.mongodb.net/app?retryWrites=true&w=majority"
+}

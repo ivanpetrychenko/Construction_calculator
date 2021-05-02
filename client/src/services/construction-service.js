@@ -1,4 +1,3 @@
-const _apiBase = 'http://localhost:3001';
 const _currencyApi = 'https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json';
 
 export const getResource = async (url) => {
@@ -11,11 +10,11 @@ export const getResource = async (url) => {
 }
 
 export const getSquareInputs = async () => {
-    return await getResource(`${_apiBase}/squares/`);
+    return await getResource(`/squares/`);
 }
 
 export const getServicesInputs = async () => {
-    return await getResource(`${_apiBase}/operations/`);
+    return await getResource(`/operations/`);
 }
 
 export const getCurrency = async () => {

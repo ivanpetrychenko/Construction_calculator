@@ -19,7 +19,7 @@ function App() {
                 return usd.rate
             })
             .then(data => dispatch(usdCurrencyRequested(data)));
-    }, [])
+    }, [dispatch, getCurrency])
 
     return (
         <section className="app">
