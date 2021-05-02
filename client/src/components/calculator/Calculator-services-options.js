@@ -2,10 +2,11 @@ import React, {useEffect} from 'react';
 import {useServiceContext} from '../../context/ServiceAppContext';
 import { useSelector, useDispatch } from 'react-redux';
 import {servicesItemsRequested, servicesItemsChanged} from '../../actions';
+import {calculateServicesChanges} from '../../logic/calculateServicesChanges';
 
 export default function CalculatorServicesOptions({hidden}) {
     const {getServicesInputs} = useServiceContext();
-    const services = useSelector(state => state.services);
+    const {services, squares, totalPriceHRN, totalSquare, height, usdRate} = useSelector(state => state);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -14,9 +15,9 @@ export default function CalculatorServicesOptions({hidden}) {
     }, [dispatch, getServicesInputs])
 
     const handleValueChange = (id, value) => {
-        dispatch(servicesItemsChanged(id, value));
+        const {newServices, newTotalPriceHRN, newTotalPriceUSD} = calculateServicesChanges(id, services, squares, value, totalPriceHRN, totalSquare, height, usdRate);
+        dispatch(servicesItemsChanged(newServices, newTotalPriceHRN, newTotalPriceUSD));
     }
-    console.log(services);
     return (
         <div className="calculator__options" hidden = {hidden}>
             <h2 className="title title__panel">Назва необхідних робіт:</h2>
@@ -32,7 +33,9 @@ export default function CalculatorServicesOptions({hidden}) {
                                 </div>
                             </div>
                             <label htmlFor={item.id} className="service-item__choice">
-                                <input onChange={event => handleValueChange(item.id, event.target.checked)} id={item.id} type="checkbox"/>
+                                <input onChange={event => handleValueChange(item.id, event.target.checked)} 
+                                id={item.id} 
+                                type="checkbox"/>
                                 <span className="service-item__checkbox"></span>
                             </label>
                         </li>

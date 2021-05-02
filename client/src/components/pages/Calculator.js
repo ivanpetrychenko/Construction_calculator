@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import CalculatorField from '../components/calculator/Calculator-field';
-import CalculatorTotal from '../components/calculator/Calculator-total';
+import CalculatorField from '../calculator/Calculator-field';
+import CalculatorTotal from '../calculator/Calculator-total';
 
 import "./calculator.scss";
 

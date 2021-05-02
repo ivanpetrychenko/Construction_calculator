@@ -1,5 +1,5 @@
-@import "styles/font.scss";
-@import "styles/variables.scss";
+@import ".//font.scss";
+@import ".//variables.scss";
 * {
     font-family: "HelveticaNeueCyr", sans-serif;
     margin: 0;
@@ -47,7 +47,7 @@ input::-webkit-inner-spin-button {
 
 .app {
     padding: 120px 100px;
-    background: url('bg.jpg') center (center / cover) no-repeat;
+    background: url('../img/bg.jpg') center (center / cover) no-repeat;
     min-height: 100vh;
     &__title {
         position: relative;
@@ -127,5 +127,5 @@ input::-webkit-inner-spin-button {
     }
 }
 
-@import "styles/button.scss";
-@import "styles/titles.scss";
+@import "./button.scss";
+@import "./titles.scss";

@@ -3,7 +3,7 @@ import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom
 import {useServiceContext} from '../../context/ServiceAppContext';
 import { useSelector, useDispatch } from 'react-redux';
 import {usdCurrencyRequested} from '../../actions';
-import {Calculator} from '../../pages/Calculator';
+import {Calculator} from '../pages/Calculator';
 import {LoginForm} from '../loginForm/LoginForm';
 import {AdminPanel} from '../adminPanel/AdminPanel';
 

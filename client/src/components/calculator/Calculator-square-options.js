@@ -2,12 +2,12 @@ import React, {useEffect} from 'react';
 import {useServiceContext} from '../../context/ServiceAppContext';
 import { useSelector, useDispatch } from 'react-redux';
 import {squareItemsRequested, squareItemsChanged, clearChanges, heightChanged} from '../../actions';
+import {calculateHeight} from '../../logic/calculateHeight';
+import {calculateSquareItems} from '../../logic/calculateSquareItems';
 
 export default function CalculatorSquareOptions({hidden}) {
     const {getSquareInputs} = useServiceContext();
-    const squares = useSelector(state => state.squares);
-    const totalSquare = useSelector(state => state.totalSquare);
-    const totalPriceHRN = useSelector(state => state.totalPriceHRN);
+    const {squares, services, height, totalSquare, totalPriceHRN, usdRate} = useSelector(state => state);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -17,18 +17,22 @@ export default function CalculatorSquareOptions({hidden}) {
             return dispatch(clearChanges())
     }, [dispatch, getSquareInputs]);
 
-    const handleValueChange = (value, id, hook) => {
-        dispatch(hook(value, id));
+    const handleHeightChange = (value) => {
+        const {newHeight, newTotalPriceHRN, newTotalPriceUSD} = calculateHeight(services, value, height, totalSquare, totalPriceHRN, usdRate);
+        dispatch(heightChanged(newHeight, newTotalPriceHRN, newTotalPriceUSD));
     }
 
-    console.log(squares);
-    console.log(totalPriceHRN);
+    const handleSquareChange = (id, value) => {
+        const {newSquares, newTotalSquare, newTotalPriceHRN, newTotalPriceUSD} = calculateSquareItems(id, value, squares, services, height, usdRate);
+        dispatch(squareItemsChanged(newSquares, newTotalSquare, newTotalPriceHRN, newTotalPriceUSD));
+    }
+
     return (
         <div className="calculator__options" hidden = {hidden}> 
             <div className="area-item area-item_first">
                 <div className="area-item__title">Висота стелі в квартирі:</div>
                 <input 
-                    onChange={event => handleValueChange(+event.target.value, 'height', heightChanged)} 
+                    onChange={event => handleHeightChange(+event.target.value)} 
                     type="number" 
                     id="height" 
                     placeholder="0" 
@@ -43,10 +47,9 @@ export default function CalculatorSquareOptions({hidden}) {
                         <li key={item.id} className="area-item">
                             <div className="area-item__title">{item.name}</div>
                             <input 
-                                onChange={event => handleValueChange(+event.target.value, item.id, squareItemsChanged)}
+                                onChange={event => handleSquareChange(item.id, +event.target.value)}
                                 // eslint-disable-next-line
                                 onFocus={event => {if (event.target.value == 0) event.target.value = ''}}
-                                value={item.value} 
                                 type="number" 
                                 id={item.id} 
                                 placeholder="0" 
