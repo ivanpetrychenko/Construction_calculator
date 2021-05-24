@@ -1,5 +1,5 @@
 const initialState = {
-    login: true,
+    login: false,
     tab: "squares",
     error: false,
     loading: false,

@@ -20,3 +20,34 @@ export const getServicesInputs = async () => {
 export const getCurrency = async () => {
     return await getResource(_currencyApi);
 }
+
+export const postData = async (url, data) => {
+    let res = await fetch(url, {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: data
+    });
+
+    return await res.json();
+}
+
+export const login = async (data) => {
+    return await postData('/admin/', data);
+}
+
+export const updateResource = async (id, data) => {
+    const res = await fetch(`/operations/${id}`, {
+        method: "PUT",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: data
+    });
+    if (!res.ok) {
+        throw new Error(`Could not update operations/${id}` + 
+            `, received ${res.status}`);
+    }
+    return await res.json();
+}

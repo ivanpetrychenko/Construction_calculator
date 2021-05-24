@@ -7,7 +7,7 @@ import {Link} from 'react-router-dom';
 import "./admin.scss";
 
 export const AdminPanel = () => {
-    const {getServicesInputs} = useServiceContext();
+    const {getServicesInputs, updateResource} = useServiceContext();
     const services = useSelector(state => state.services);
     const dispatch = useDispatch();
 
@@ -29,7 +29,16 @@ export const AdminPanel = () => {
                     return (
                         <li key={item.id} className="admin-panel__item">
                             <div className="admin-panel__item-title">{item.name}</div>
-                            <input id={item.id} type="number" className="admin-panel__item-input" placeholder="20" defaultValue={item.count}/>
+                            <input 
+                                id={item.id} 
+                                type="number" 
+                                className="admin-panel__item-input" 
+                                placeholder="20" 
+                                defaultValue={item.count}
+                                onChange={(event) => {
+                                    updateResource(item.id, JSON.stringify({count: event.target.value}))
+                                        .then(res => console.log(res))
+                                    }}/>
                             <span className="admin-panel__item-unit">{item.unit}</span>
                         </li>
                     )

@@ -1,4 +1,5 @@
 {
     "port": 5000,
+    "jwt": "constuct calc prod",
     "mongoUri": "mongodb+srv://Ivan_Petrychenko:Ivan_Petrychenko@main.b1npj.mongodb.net/app?retryWrites=true&w=majority"
 }

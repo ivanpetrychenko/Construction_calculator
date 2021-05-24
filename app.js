@@ -8,6 +8,7 @@ app.use(express.json({extended: true}));
 
 app.use('/squares', require('./routes/squares.routes'));
 app.use('/operations', require('./routes/services.routes'));
+app.use('/admin', require('./routes/admin.routes'));
 
 const PORT = config.get('port') || 5000;
 
@@ -16,7 +17,8 @@ async function start() {
        await mongoose.connect(config.get('mongoUri'), {
             useNewUrlParser: true,
             useUnifiedTopology: true,
-            useCreateIndex: true
+            useCreateIndex: true,
+            useFindAndModify: false
        });
        app.listen(PORT, () => console.log(`Started! on port ${PORT}...`));
     } catch (e) {
