@@ -16,14 +16,14 @@ export const useAuth = () => {
       token: jwtToken
     }));
     dispatch(userAuth(true));
-  }, [])
+  }, [dispatch])
 
 
   const logout = useCallback(() => {
     setToken(null);
     localStorage.removeItem(storageName);
     dispatch(userAuth(false));
-  }, [])
+  }, [dispatch])
 
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem(storageName))
@@ -33,7 +33,7 @@ export const useAuth = () => {
     }
     setReady(true)
     dispatch(userAuth(!!data));
-  }, [login])
+  }, [login, dispatch])
 
 
   return { login, logout, token, ready }

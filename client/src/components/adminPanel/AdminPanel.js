@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
 import {useHttp} from '../../hooks/http.hook';
+import {useAuth} from '../../hooks/auth.hook';
 import { useSelector, useDispatch } from 'react-redux';
 import {servicesItemsRequested} from '../../actions';
 import {Link} from 'react-router-dom';
@@ -10,6 +11,7 @@ export const AdminPanel = () => {
     const { loading, request, error, clearError } = useHttp();
     const {services, login} = useSelector(state => state);
     const dispatch = useDispatch();
+    const {logout} = useAuth();
 
     useEffect(() => {
         if (!services || services.length === 0) {
@@ -21,8 +23,9 @@ export const AdminPanel = () => {
 
     if (!login) {
         return (
-            <div>
-                Поверніться на сторінку авторизації
+            <div className="admin-panel__error">
+                <span>Поверніться на сторінку авторизації</span>
+                <Link className="button button__exit" to="/">Назад</Link>
             </div>
         )
     }
@@ -59,7 +62,11 @@ export const AdminPanel = () => {
                         <li className="calculator__note">встановлюйте тільки цифри, одиниці вимірювання підставляються автоматично</li>
                     </ul>
                 </div>
-                <Link className="button button__exit" to="/">Вийти</Link>
+                
+            </div>
+            <div className="admin-panel__btns">
+                <Link className="button button__exit" to="/">Назад</Link>
+                <Link className="button button__exit" to="/" onClick={logout}>Вийти</Link>
             </div>
         </div>
     )
