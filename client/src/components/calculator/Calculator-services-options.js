@@ -1,18 +1,18 @@
 import React, {useEffect} from 'react';
-import {useServiceContext} from '../../context/ServiceAppContext';
+import {useHttp} from '../../hooks/http.hook';
 import { useSelector, useDispatch } from 'react-redux';
 import {servicesItemsRequested, servicesItemsChanged} from '../../actions';
 import {calculateServicesChanges} from '../../logic/calculateServicesChanges';
 
 export default function CalculatorServicesOptions({hidden}) {
-    const {getServicesInputs} = useServiceContext();
+    const { loading, request, error, clearError } = useHttp();
     const {services, squares, totalPriceHRN, totalSquare, height, usdRate} = useSelector(state => state);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        getServicesInputs()
+        request('/operations/')
             .then(data => dispatch(servicesItemsRequested(data)));
-    }, [dispatch, getServicesInputs])
+    }, [dispatch, request])
 
     const handleValueChange = (id, value) => {
         const {newServices, newTotalPriceHRN, newTotalPriceUSD} = calculateServicesChanges(id, services, squares, value, totalPriceHRN, totalSquare, height, usdRate);

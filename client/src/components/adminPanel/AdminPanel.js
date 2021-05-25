@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {useServiceContext} from '../../context/ServiceAppContext';
+import {useHttp} from '../../hooks/http.hook';
 import { useSelector, useDispatch } from 'react-redux';
 import {servicesItemsRequested} from '../../actions';
 import {Link} from 'react-router-dom';
@@ -7,17 +7,25 @@ import {Link} from 'react-router-dom';
 import "./admin.scss";
 
 export const AdminPanel = () => {
-    const {getServicesInputs, updateResource} = useServiceContext();
-    const services = useSelector(state => state.services);
+    const { loading, request, error, clearError } = useHttp();
+    const {services, login} = useSelector(state => state);
     const dispatch = useDispatch();
 
     useEffect(() => {
         if (!services || services.length === 0) {
             console.log('empty')
-            getServicesInputs()
+            request('/operations/')
                 .then(data => dispatch(servicesItemsRequested(data)));
         }
-    }, [])
+    }, []);
+
+    if (!login) {
+        return (
+            <div>
+                Поверніться на сторінку авторизації
+            </div>
+        )
+    }
 
     return (
         <div className="admin-panel">
@@ -36,7 +44,7 @@ export const AdminPanel = () => {
                                 placeholder="20" 
                                 defaultValue={item.count}
                                 onChange={(event) => {
-                                    updateResource(item.id, JSON.stringify({count: event.target.value}))
+                                    request(`/operations/${item.id}`, 'PUT', JSON.stringify({count: event.target.value}))
                                         .then(res => console.log(res))
                                     }}/>
                             <span className="admin-panel__item-unit">{item.unit}</span>

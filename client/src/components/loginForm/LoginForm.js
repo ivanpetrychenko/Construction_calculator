@@ -1,30 +1,29 @@
-import React, {useEffect, useState} from 'react';
-import {useServiceContext} from '../../context/ServiceAppContext';
-import { useSelector, useDispatch } from 'react-redux';
+import React, {useState} from 'react';
+import {useHttp} from '../../hooks/http.hook';
+import {useAuth} from '../../hooks/auth.hook';
 
 import "./authorization.scss";
 
 export const LoginForm = () => {
-    const {login} = useServiceContext();
-    const isLogin = useSelector(state => state.login);
-    const dispatch = useDispatch();
-    const [formErr, changeStatus] = useState(false);
+    const { loading, request, error, clearError } = useHttp();
+    const {login} = useAuth();
+    const [formErr, changeFormStatus] = useState(false);
 
     const handleFormSubmit = (event) => {
         event.preventDefault();
         const formData = new FormData(event.target);
 
         const json = JSON.stringify(Object.fromEntries(formData.entries()));
-        login(json)
+        request('/admin/', 'POST', json)
             .then(data => {
                 if (!data.token) {
                     throw new Error();
                 }
-                console.log(data);
-                changeStatus(false);
+                login(data.token);
+                changeFormStatus(false);
             })
             .catch(e => {
-                changeStatus(true);
+                changeFormStatus(true);
             })
     }
 

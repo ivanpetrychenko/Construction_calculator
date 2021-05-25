@@ -1,8 +1,6 @@
 const initialState = {
     login: false,
     tab: "squares",
-    error: false,
-    loading: false,
     squares: [],
     services: [],
     totalSquare: 0,
@@ -14,6 +12,11 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
+        case 'USER_AUTH':
+            return {
+                ...state,
+                login: action.prop
+            }
         case 'TABS_CHANGED': 
             return {
                 ...state,

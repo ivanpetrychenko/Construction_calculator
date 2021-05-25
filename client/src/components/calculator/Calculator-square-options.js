@@ -1,21 +1,21 @@
 import React, {useEffect} from 'react';
-import {useServiceContext} from '../../context/ServiceAppContext';
+import {useHttp} from '../../hooks/http.hook';
 import { useSelector, useDispatch } from 'react-redux';
 import {squareItemsRequested, squareItemsChanged, clearChanges, heightChanged} from '../../actions';
 import {calculateHeight} from '../../logic/calculateHeight';
 import {calculateSquareItems} from '../../logic/calculateSquareItems';
 
 export default function CalculatorSquareOptions({hidden}) {
-    const {getSquareInputs} = useServiceContext();
+    const { loading, request, error, clearError } = useHttp();
     const {squares, services, height, totalSquare, totalPriceHRN, usdRate} = useSelector(state => state);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        getSquareInputs()
+        request('/squares/')
             .then(data => dispatch(squareItemsRequested(data)));
 
             return dispatch(clearChanges())
-    }, [dispatch, getSquareInputs]);
+    }, [dispatch, request]);
 
     const validateInput = (value, elem) => {
         if (value < 0) elem.style.color = 'red';

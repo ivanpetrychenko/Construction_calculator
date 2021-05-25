@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
-import {useServiceContext} from '../../context/ServiceAppContext';
+import {useHttp} from '../../hooks/http.hook';
+import {useAuth} from '../../hooks/auth.hook';
 import { useSelector, useDispatch } from 'react-redux';
 import {usdCurrencyRequested} from '../../actions';
 import {Calculator} from '../pages/Calculator';
@@ -8,18 +9,22 @@ import {LoginForm} from '../loginForm/LoginForm';
 import {AdminPanel} from '../adminPanel/AdminPanel';
 
 function App() {
-    const {getCurrency} = useServiceContext();
+    const {request} = useHttp();
     const login = useSelector(state => state.login);
     const dispatch = useDispatch();
+    const {ready} = useAuth();
 
+    console.log(login)
     useEffect(() => {
-        getCurrency()
+        request('https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json', 'GET', null, {})
             .then(data => {
                 const usd = data.find(item => item.cc === "USD");
                 return usd.rate
             })
-            .then(data => dispatch(usdCurrencyRequested(data)));
-    }, [dispatch, getCurrency])
+            .then(data => {
+                dispatch(usdCurrencyRequested(data));
+            });
+    }, [dispatch, request])
 
     return (
         <section className="app">

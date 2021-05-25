@@ -61,3 +61,9 @@ export const clearChanges = () => {
     }
 }
 
+export const userAuth = (prop) => {
+    return {
+        type: 'USER_AUTH',
+        prop
+    }
+}
