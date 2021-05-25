@@ -15,6 +15,13 @@
             color: #fff;
         }   
     }
+    &__pdf {
+        background-color: $main-color;
+        margin-left: 20px;
+        &:hover {
+            color: #fff;
+        } 
+    }
     &__form {
         display: block;
         color: #000;
@@ -40,14 +47,11 @@
     .button {
         &__exit {
             width: 185px;
-        }
-    }
-}
-
-@media (max-width: 768px) {
-    .button {
-        &__exit {
             margin: 0 20px 0 20px;
+        }
+        &__pdf {
+            margin-top: 20px;
+            margin-left: 0;
         }
     }
 }
