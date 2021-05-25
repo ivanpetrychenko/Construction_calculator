@@ -9,14 +9,6 @@ router.post('/', async (req, res) => {
         const ig = new InvoiceGenerator(data);
         let igRes = ig.generate();
 
-        // if (!igRes) {
-        //     res.status(500)
-        // } else {
-        //     const pdf = fs.readFileSync(`./${igRes}`);
-        //     res.contentType("application/pdf");
-        //     res.send(pdf);
-        // }
-
         res.json({ message: igRes });
     } catch (e) {
         res.status(500).json({ message: 'Щось пішло не так, спробуйте ще' })

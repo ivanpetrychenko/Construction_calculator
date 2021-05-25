@@ -15,7 +15,6 @@ export const AdminPanel = () => {
 
     useEffect(() => {
         if (!services || services.length === 0) {
-            console.log('empty')
             request('/operations/')
                 .then(data => dispatch(servicesItemsRequested(data)));
         }

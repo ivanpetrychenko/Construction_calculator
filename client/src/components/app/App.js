@@ -14,7 +14,6 @@ function App() {
     const dispatch = useDispatch();
     const {ready} = useAuth();
 
-    console.log(login)
     useEffect(() => {
         request('https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json', 'GET', null, {})
             .then(data => {

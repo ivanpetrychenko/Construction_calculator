@@ -10,6 +10,7 @@ app.use('/squares', require('./routes/squares.routes'));
 app.use('/operations', require('./routes/services.routes'));
 app.use('/admin', require('./routes/admin.routes'));
 app.use('/createpdf', require('./routes/createpdf.routes'));
+app.use('/downloadpdf', require('./routes/downloadpdf.routes'));
 
 const PORT = config.get('port') || 5000;
 

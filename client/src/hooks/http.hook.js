@@ -25,7 +25,29 @@ export const useHttp = () => {
     }
   }, [])
 
+  const download = useCallback(async (url, method = 'GET', body = null, headers = {'Content-Type': 'application/json'}) => {
+    setLoading(true)
+    try {
+        const response = await fetch(url, {method,
+            body, 
+            headers,
+            responseType: 'blob'})
+  
+        if (!response.ok) {
+          throw new Error(`Could not fetch ${url}` + 
+          `, received ${response.status}`);
+        }
+  
+        setLoading(false)
+        return await response.blob();
+    } catch(e){
+        setLoading(false)
+        setError(e.message)
+        throw e
+    }
+  }, []);
+
   const clearError = useCallback(() => setError(null), [])
 
-  return { loading, request, error, clearError }
+  return { loading, request, error, clearError, download }
 }
