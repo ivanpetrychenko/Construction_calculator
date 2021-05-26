@@ -3,9 +3,10 @@ import {useHttp} from '../../hooks/http.hook';
 import { useSelector, useDispatch } from 'react-redux';
 import {servicesItemsRequested, servicesItemsChanged} from '../../actions';
 import {calculateServicesChanges} from '../../logic/calculateServicesChanges';
+import Spinner from '../Spinner/Spinner';
 
 export default function CalculatorServicesOptions({hidden}) {
-    const { loading, request, error, clearError } = useHttp();
+    const { loading, request, error } = useHttp();
     const {services, squares, totalPriceHRN, totalSquare, height, usdRate} = useSelector(state => state);
     const dispatch = useDispatch();
 
@@ -18,10 +19,14 @@ export default function CalculatorServicesOptions({hidden}) {
         const {newServices, newTotalPriceHRN, newTotalPriceUSD} = calculateServicesChanges(id, services, squares, value, totalPriceHRN, totalSquare, height, usdRate);
         dispatch(servicesItemsChanged(newServices, newTotalPriceHRN, newTotalPriceUSD));
     }
+
+
     return (
         <div className="calculator__options" hidden = {hidden}>
             <h2 className="title title__panel">Назва необхідних робіт:</h2>
             <ul className="calculator__service-grid">
+                {loading ? <Spinner/> : null}
+                {error ? <span className="title title__panel error">Помилка завантаження, спробуйте ще раз</span> : null}
                 {services.map(item => {
                     return (
                         <li key={item.id} className="service-item">

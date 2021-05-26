@@ -1,5 +1,5 @@
-@import ".//font.scss";
-@import ".//variables.scss";
+@import "./font.scss";
+@import "./variables.scss";
 * {
     font-family: "HelveticaNeueCyr", sans-serif;
     margin: 0;
@@ -68,6 +68,13 @@ input::-webkit-inner-spin-button {
     }
 }
 
+.spinner {
+    width: 70px;
+    height: 70px;
+    display: block;
+    margin: 0 auto;
+}
+
 @media (max-width: 1700px) {
     .app {
         padding: 100px 40px;
@@ -129,3 +136,11 @@ input::-webkit-inner-spin-button {
 
 @import "./button.scss";
 @import "./titles.scss";
+
+.error {
+    color: $error;
+}
+
+.mt50 {
+    margin-top: 50px;
+}

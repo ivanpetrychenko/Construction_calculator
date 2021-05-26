@@ -4,9 +4,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import {squareItemsRequested, squareItemsChanged, clearChanges, heightChanged} from '../../actions';
 import {calculateHeight} from '../../logic/calculateHeight';
 import {calculateSquareItems} from '../../logic/calculateSquareItems';
+import Spinner from '../Spinner/Spinner';
 
 export default function CalculatorSquareOptions({hidden}) {
-    const { loading, request, error, clearError } = useHttp();
+    const { loading, request, error } = useHttp();
     const {squares, services, height, totalSquare, totalPriceHRN, usdRate} = useSelector(state => state);
     const dispatch = useDispatch();
 
@@ -48,7 +49,8 @@ export default function CalculatorSquareOptions({hidden}) {
             </div>
             <h2 className="title title__panel">Площа окремих кімнат:</h2>
             <ul className="calculator__area-grid">
-
+                {loading ? <Spinner/> : null}
+                {error ? <span className="title title__panel error">Помилка завантаження, спробуйте ще раз</span> : null}
                 {squares.map(item => {
                     return (
                         <li key={item.id} className="area-item">

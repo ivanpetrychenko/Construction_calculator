@@ -83,7 +83,7 @@ class InvoiceGenerator {
         theOutput.registerFont('HelveticaNeueCyr', './managePdf/HelveticaNeueCyr-Roman.ttf');
         theOutput.font('HelveticaNeueCyr');
 
-        const date = Date.now();
+        const date = `${new Date().getFullYear()}-${new Date().getDate()}_${new Date().getHours()}-${new Date().getMinutes()}-${new Date().getSeconds()}`;
 
         const fileName = `Summary_${date}.pdf`;
 

@@ -9,7 +9,11 @@ router.post('/', async (req, res) => {
         const ig = new InvoiceGenerator(data);
         let igRes = ig.generate();
 
-        res.json({ message: igRes });
+        if (!igRes) {
+            res.status(500).json({ message: 'Недостатньо даних' })
+        } else {
+            res.json({ message: igRes });
+        }
     } catch (e) {
         res.status(500).json({ message: 'Щось пішло не так, спробуйте ще' })
     }

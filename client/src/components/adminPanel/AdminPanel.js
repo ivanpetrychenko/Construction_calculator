@@ -4,11 +4,12 @@ import {useAuth} from '../../hooks/auth.hook';
 import { useSelector, useDispatch } from 'react-redux';
 import {servicesItemsRequested} from '../../actions';
 import {Link} from 'react-router-dom';
+import Spinner from '../Spinner/Spinner';
 
 import "./admin.scss";
 
 export const AdminPanel = () => {
-    const { loading, request, error, clearError } = useHttp();
+    const { loading, request, error } = useHttp();
     const {services, login} = useSelector(state => state);
     const dispatch = useDispatch();
     const {logout} = useAuth();
@@ -16,9 +17,10 @@ export const AdminPanel = () => {
     useEffect(() => {
         if (!services || services.length === 0) {
             request('/operations/')
-                .then(data => dispatch(servicesItemsRequested(data)));
+                .then(data => dispatch(servicesItemsRequested(data)))
+                .catch(e => console.log(e));
         }
-    }, []);
+    }, [request, dispatch, services]);
 
     if (!login) {
         return (
@@ -35,6 +37,8 @@ export const AdminPanel = () => {
                 Встановіть середній цінник кожної роботи:
             </h2>
             <ul className="admin-panel__grid">
+                {loading ? <Spinner/> : null}
+                {error ? <span className="title title__panel error">Помилка завантаження, спробуйте ще раз</span> : null}
                 {services.map(item => {
                     return (
                         <li key={item.id} className="admin-panel__item">
