@@ -20,9 +20,9 @@ app.get('*', (req, res) => {
 })
 
 let PORT = process.env.PORT;
-// if (port == null || port == "") {
-//     PORT = config.get('port') || 5000;
-// }
+if (PORT == null || PORT == "") {
+    PORT = config.get('port') || 5000;
+}
 
 async function start() {
     try {
