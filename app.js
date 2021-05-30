@@ -1,6 +1,7 @@
 const express = require('express');
 const config = require('config');
 const mongoose = require('mongoose');
+const path = require('path')
 
 const app = express();
 
@@ -12,7 +13,16 @@ app.use('/admin', require('./routes/admin.routes'));
 app.use('/createpdf', require('./routes/createpdf.routes'));
 app.use('/downloadpdf', require('./routes/downloadpdf.routes'));
 
-const PORT = config.get('port') || 5000;
+app.use('/', express.static(path.join(__dirname, 'client', 'build')))
+
+app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+})
+
+let PORT = process.env.PORT;
+// if (port == null || port == "") {
+//     PORT = config.get('port') || 5000;
+// }
 
 async function start() {
     try {
