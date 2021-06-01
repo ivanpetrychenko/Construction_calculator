@@ -7,7 +7,7 @@ router.get('/', async (req, res) => {
       const links = await Square.find();
       res.json(links)
     } catch (e) {
-      res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова' })
+      res.status(500).json({ message: 'Щось пішло не так, спробуйте ще' })
     }
   })
 

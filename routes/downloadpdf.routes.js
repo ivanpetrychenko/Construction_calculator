@@ -18,9 +18,7 @@ router.get('/all', async (req, res) => {
 
         fs.readdir(currentDirPath, (err, files) => {
             const result = [];
-            if (err) {
-                console.log(err);
-            }
+
             files.forEach(fileName => {
                 if (/\.pdf$/.test(fileName)) {
                     result.push({

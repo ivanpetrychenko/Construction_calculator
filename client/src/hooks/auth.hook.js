@@ -21,12 +21,14 @@ export const useAuth = () => {
 
   const logout = useCallback(() => {
     setToken(null);
+
     localStorage.removeItem(storageName);
     dispatch(userAuth(false));
   }, [dispatch])
 
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem(storageName))
+    
     if (data && data.token) {
       login(data.token)
     }

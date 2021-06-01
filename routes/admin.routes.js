@@ -10,11 +10,11 @@ router.post('/', async (req, res) => {
 
         const user = await Admin.findOne({login});
         if (!user) {
-            return res.status(400).json({ message: 'Пользователь не найден' })
+            return res.status(400).json({ message: 'Користувач не знайдений' })
         }
-        console.log(user.password, password)
+
         if (user.password !== password) {
-            return res.status(400).json({ message: 'Неверный пароль' })
+            return res.status(400).json({ message: 'Невірний пароль' })
         }
 
         const token = jwt.sign(
@@ -26,7 +26,7 @@ router.post('/', async (req, res) => {
         res.json({token, userId: user._id})
 
     } catch (e) {
-        res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова' })
+        res.status(500).json({ message: 'Щось пішло не так, спробуйте ще' })
     }
 });
 
