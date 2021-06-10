@@ -27,7 +27,7 @@ export const LoginForm = () => {
 
     return (
         <div className="authorization">
-            <h2 className="title title__auth">Авторизация администратора</h2>
+            <h2 className="title title__auth">Авторизація адміністратора</h2>
             <form className="authorization__form"
                 onSubmit={(e) => handleFormSubmit(e)}>
                 <label htmlFor="login">Логін</label>
